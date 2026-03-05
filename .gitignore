@@ -1,0 +1,70 @@
+########################################
+# OS (macOS / Windows)
+########################################
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+########################################
+# Java / Build
+########################################
+# Compiled
+*.class
+
+# Logs / crash
+*.log
+hs_err_pid*
+replay_pid*
+
+# Build output (Gradle/Maven/General)
+target/
+build/
+out/
+bin/
+
+########################################
+# Maven / Gradle
+########################################
+# Maven
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+########################################
+# IDEs
+########################################
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse / STS
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+########################################
+# Misc
+########################################
+*.tmp
+*.swp
+*.swo
+
+# Eclipse workspace metadata
+.metadata/
+SWEA/.metadata/
