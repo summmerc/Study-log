@@ -1,35 +1,68 @@
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Solution {
-	//LinkedList
+	static int[] left;
+	static int[] right;
+	static String[] val;
+	static int N;
+	static StringBuilder sb;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		for(int tc = 1; tc <= 10; tc++) {
-			int N = sc.nextInt();
-			List<Integer> list = new LinkedList<>();
+			N = sc.nextInt();
+			sc.nextLine();
+			sb = new StringBuilder();
 			
 			for(int i = 0; i < N; i++) {
-				list.add(sc.nextInt());
+				String[] s = sc.nextLine().split(" ");
+				int idx = Integer.parseInt(s[0]);
+				
+				val[idx] = s[1];
+				if(s.length >= 3) left[idx] = Integer.parseInt(s[2]);
+				if(s.length >= 4) right[idx] = Integer.parseInt(s[3]);
 			}
 			
-			int M = sc.nextInt();
-			for(int i = 0; i < M; i++) {
-				String st = sc.next();
-				
-				if(st.equals("I")) {
-					int x = sc.nextInt();
-					int y = sc.nextInt();
+			postOrder(1);
+			
+			String[] line = sb.toString().trim().split(" ");
+			Stack<Integer> stack = new Stack<>();
+			
+			for(int i = 0; i < line.length; i++) {
+				String s = line[i];
+				int num1;
+				int num2;
+				if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
+					num2 = stack.pop();
+					num1 = stack.pop();
 					
-					for(int a = x; a < y; a++) {
-						
-					}
-					
-					
+					switch(s) {
+					case "+" :
+						stack.push(num1+ num2);
+						break;
+					case "-" :
+						stack.push(num1 - num2);
+						break;
+					case "*" :
+						stack.push(num1 * num2);
+					case "/" :
+						stack.push(num1 / num2);
+					} //switch
+				} //if
+				else {
+					stack.push(Integer.parseInt(s));
 				}
 			}
-		}
+			
+			System.out.println("#" + tc + " " + stack.pop());
+		}//tc
+	}//main
+	
+	static void postOrder(int root) {
+		if(root < 1 || root >= N) return;
+		postOrder(left[root]);
+		postOrder(right[root]);
+		sb.append(val[root]).append(" ");
 	}
 }
