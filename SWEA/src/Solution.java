@@ -14,6 +14,9 @@ public class Solution {
 			N = sc.nextInt();
 			sc.nextLine();
 			sb = new StringBuilder();
+			left = new int[N + 1];
+			right = new int[N + 1];
+			val = new String[N + 1];
 			
 			for(int i = 0; i < N; i++) {
 				String[] s = sc.nextLine().split(" ");
@@ -46,8 +49,10 @@ public class Solution {
 						break;
 					case "*" :
 						stack.push(num1 * num2);
+						break;
 					case "/" :
 						stack.push(num1 / num2);
+						break;
 					} //switch
 				} //if
 				else {
@@ -60,9 +65,9 @@ public class Solution {
 	}//main
 	
 	static void postOrder(int root) {
-		if(root < 1 || root >= N) return;
+		if(root < 1 || root > N) return;
 		postOrder(left[root]);
 		postOrder(right[root]);
-		sb.append(val[root]).append(" ");
+		sb.append(val[root]).append(' ');
 	}
 }
