@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Backjoon_1743_음식물피하기 {
+public class Baekjoon_1743_음식물피하기 {
 	static int N, M, K;
 	static boolean[][] room;
 	static int max;

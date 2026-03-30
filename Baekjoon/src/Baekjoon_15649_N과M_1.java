@@ -1,33 +1,26 @@
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Backjoon_15655_N과M_6 {
+public class Baekjoon_15649_N과M_1 {
 	static int N;
 	static int M;
-	static int[] nums;
 	static int[] result;
+	static boolean[] visited;
 	static StringBuilder sb = new StringBuilder();
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		N = sc.nextInt();
 		M = sc.nextInt();
+		
 		result = new int[M];
-		nums = new int[N];
+		visited = new boolean[N + 1];
 		
-		for(int i = 0; i < N; i++) {
-			nums[i] = sc.nextInt();
-		}
-		
-		Arrays.sort(nums);
-		
-		combination(0, 0);
+		permutation(0);
 		System.out.println(sb);
 	}
 	
-	static void combination(int cnt, int start) {
+	static void permutation(int cnt) {
 		if(cnt == M) {
 			for(int i = 0; i < M; i++) {
 				sb.append(result[i]).append(" ");
@@ -35,10 +28,13 @@ public class Backjoon_15655_N과M_6 {
 			sb.append("\n");
 			return;
 		}
-		
-		for(int i = start; i < N; i++) {
-			result[cnt] = nums[i];
-			combination(cnt + 1, i + 1);
+		for(int i = 1; i <= N; i++) {
+			if(visited[i]) continue;
+			
+			visited[i] = true;
+			result[cnt] = i;
+			permutation(cnt + 1);
+			visited[i] = false;
 		}
 	}
 }

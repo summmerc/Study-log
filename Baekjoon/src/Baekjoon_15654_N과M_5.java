@@ -2,7 +2,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Backjoon_15654_N과M_5 {
+public class Baekjoon_15654_N과M_5 {
 	static int N;
 	static int M;
 	static int[] nums;

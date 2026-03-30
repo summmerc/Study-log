@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Backjoon_2589_보물섬 {
+public class Baekjoon_2589_보물섬 {
 	static int N, M;
 	static char[][] map;
 	static boolean[][] visited;

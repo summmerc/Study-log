@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Backjoon_15652_N과M_4 {
+public class Baekjoon_15651_N과M_3 {
 	static int N;
 	static int M;
 	static int[] result;
@@ -14,11 +14,11 @@ public class Backjoon_15652_N과M_4 {
 		M = sc.nextInt();
 		result = new int[M];
 		
-		combination(0, 1);
+		rePermutaiton(0);
 		System.out.println(sb);
 	}
 	
-	static void combination(int cnt, int start) {
+	static void rePermutaiton(int cnt) {
 		if(cnt == M) {
 			for(int i = 0; i < M; i++) {
 				sb.append(result[i]).append(" ");
@@ -26,9 +26,10 @@ public class Backjoon_15652_N과M_4 {
 			sb.append("\n");
 			return;
 		}
-		for(int i = start; i <= N; i++) {
+		
+		for(int i = 1; i <= N; i++) {
 			result[cnt] = i;
-			combination(cnt + 1, i);
+			rePermutaiton(cnt + 1);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Backjoon_20546_기적의매매법 {
+public class Baekjoon_20546_기적의매매법 {
 	static int seed;
 	static int[] days;
 	

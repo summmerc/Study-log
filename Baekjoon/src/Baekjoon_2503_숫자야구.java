@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Backjoon_2503_숫자야구 {
+public class Baekjoon_2503_숫자야구 {
 	static int N;
 	static class Hint {
 		String number;

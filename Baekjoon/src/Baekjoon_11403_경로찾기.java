@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Backjoon_11403_경로찾기 {
+public class Baekjoon_11403_경로찾기 {
 	static int N;
 	static int[][] graph;
 	static boolean[] visited;

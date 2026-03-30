@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Backjoon_1325_효율적해킹 {
+public class Baekjoon_1325_효율적해킹 {
 	static int N, M;
 	static int[] count;
 	static int max;

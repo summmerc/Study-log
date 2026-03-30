@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Backjoon_18352_특정거리의도시찾기 {
+public class Baekjoon_18352_특정거리의도시찾기 {
 	static int N, M, K, X;
 	static List<Integer>[] road;
 	static int[] min;

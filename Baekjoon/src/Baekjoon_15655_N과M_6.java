@@ -1,9 +1,11 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class Backjoon_15651_N과M_3 {
+public class Baekjoon_15655_N과M_6 {
 	static int N;
 	static int M;
+	static int[] nums;
 	static int[] result;
 	static StringBuilder sb = new StringBuilder();
 	
@@ -13,12 +15,19 @@ public class Backjoon_15651_N과M_3 {
 		N = sc.nextInt();
 		M = sc.nextInt();
 		result = new int[M];
+		nums = new int[N];
 		
-		rePermutaiton(0);
+		for(int i = 0; i < N; i++) {
+			nums[i] = sc.nextInt();
+		}
+		
+		Arrays.sort(nums);
+		
+		combination(0, 0);
 		System.out.println(sb);
 	}
 	
-	static void rePermutaiton(int cnt) {
+	static void combination(int cnt, int start) {
 		if(cnt == M) {
 			for(int i = 0; i < M; i++) {
 				sb.append(result[i]).append(" ");
@@ -27,9 +36,9 @@ public class Backjoon_15651_N과M_3 {
 			return;
 		}
 		
-		for(int i = 1; i <= N; i++) {
-			result[cnt] = i;
-			rePermutaiton(cnt + 1);
+		for(int i = start; i < N; i++) {
+			result[cnt] = nums[i];
+			combination(cnt + 1, i + 1);
 		}
 	}
 }

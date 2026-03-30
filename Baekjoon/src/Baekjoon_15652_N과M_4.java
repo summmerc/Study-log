@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Backjoon_15650_N과M_2 {
+public class Baekjoon_15652_N과M_4 {
 	static int N;
 	static int M;
 	static int[] result;
@@ -9,6 +9,7 @@ public class Backjoon_15650_N과M_2 {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		
 		N = sc.nextInt();
 		M = sc.nextInt();
 		result = new int[M];
@@ -25,10 +26,9 @@ public class Backjoon_15650_N과M_2 {
 			sb.append("\n");
 			return;
 		}
-		
 		for(int i = start; i <= N; i++) {
 			result[cnt] = i;
-			combination(cnt + 1, i + 1);
+			combination(cnt + 1, i);
 		}
 	}
 }
