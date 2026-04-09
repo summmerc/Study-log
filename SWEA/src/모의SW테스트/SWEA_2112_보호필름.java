@@ -32,10 +32,13 @@ public class SWEA_2112_보호필름 {
 	}
 	
 	static void makeFilm(int idx, int cnt) {
+		if(test()) {
+			ans = Math.min(cnt, ans);
+			return;
+		}
+		if(ans <= cnt) return;
+		
 		if(idx == D) {
-			if(test()) {
-				ans = Math.min(cnt, ans);
-			}
 			return;
 		}
 		
