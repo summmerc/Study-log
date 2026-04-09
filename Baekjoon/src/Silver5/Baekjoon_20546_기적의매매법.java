@@ -1,3 +1,4 @@
+package Silver5;
 import java.util.Scanner;
 
 public class Baekjoon_20546_기적의매매법 {

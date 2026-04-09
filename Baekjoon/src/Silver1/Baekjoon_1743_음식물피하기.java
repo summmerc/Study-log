@@ -1,3 +1,4 @@
+package Silver1;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;

@@ -1,7 +1,8 @@
+package Silver3;
 
 import java.util.Scanner;
 
-public class Baekjoon_15652_N과M_4 {
+public class Baekjoon_15650_N과M_2 {
 	static int N;
 	static int M;
 	static int[] result;
@@ -9,7 +10,6 @@ public class Baekjoon_15652_N과M_4 {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
 		N = sc.nextInt();
 		M = sc.nextInt();
 		result = new int[M];
@@ -26,9 +26,10 @@ public class Baekjoon_15652_N과M_4 {
 			sb.append("\n");
 			return;
 		}
+		
 		for(int i = start; i <= N; i++) {
 			result[cnt] = i;
-			combination(cnt + 1, i);
+			combination(cnt + 1, i + 1);
 		}
 	}
 }

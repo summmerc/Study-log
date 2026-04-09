@@ -1,11 +1,10 @@
+package Silver3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Baekjoon_15655_N과M_6 {
+public class Baekjoon_15652_N과M_4 {
 	static int N;
 	static int M;
-	static int[] nums;
 	static int[] result;
 	static StringBuilder sb = new StringBuilder();
 	
@@ -15,15 +14,8 @@ public class Baekjoon_15655_N과M_6 {
 		N = sc.nextInt();
 		M = sc.nextInt();
 		result = new int[M];
-		nums = new int[N];
 		
-		for(int i = 0; i < N; i++) {
-			nums[i] = sc.nextInt();
-		}
-		
-		Arrays.sort(nums);
-		
-		combination(0, 0);
+		combination(0, 1);
 		System.out.println(sb);
 	}
 	
@@ -35,10 +27,9 @@ public class Baekjoon_15655_N과M_6 {
 			sb.append("\n");
 			return;
 		}
-		
-		for(int i = start; i < N; i++) {
-			result[cnt] = nums[i];
-			combination(cnt + 1, i + 1);
+		for(int i = start; i <= N; i++) {
+			result[cnt] = i;
+			combination(cnt + 1, i);
 		}
 	}
 }
