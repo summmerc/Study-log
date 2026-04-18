@@ -1,8 +1,9 @@
+package D4;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Solution {
+public class SWEA_1226_미로1_bfs {
 	static int[][] map;
 	static int sR, sC;
 	static boolean[][] visited;
