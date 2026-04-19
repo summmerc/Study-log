@@ -1,76 +1,61 @@
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Solution {
-	static int[][] map;
-	static int sR, sC;
-	static boolean[][] visited;
-	static int[] dr = {-1, 1, 0, 0};
-	static int[] dc = {0, 0, -1, 1};
-	static class Node {
-		int r;
-		int c;
-		
-		public Node(int r, int c) {
-			this.r = r;
-			this.c = c;
-		}
-	}
+	static int V;
+	static int E;
+	static boolean[] visited;
+	static int[][] tree;
+	static int find1, find2;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		for(int tc = 1; tc <= 10; tc++) {
-			int T = sc.nextInt();
+		int T = sc.nextInt();
+		
+		for(int tc = 1; tc <= T; tc++) {
+			V = sc.nextInt();
+			E = sc.nextInt();
+			find1 = sc.nextInt();
+			find2 = sc.nextInt();
 			
-			map = new int[16][16];
-			visited = new boolean[16][16];
+			tree = new int[V + 1][3];
 			
-			for(int i = 0; i < 16; i++) {
-				String line = sc.next();
-				for(int j = 0; j < 16; j++) {
-					map[i][j] = line.charAt(j) - '0';
-					
-					if(map[i][j] == 2) {
-						sR = i;
-						sC = j;
-					}
+			for(int i = 0; i < E; i++) {
+				int parent = sc.nextInt();
+				int child = sc.nextInt();
+				
+				if(tree[parent][0] == 0) {
+					tree[parent][0] = child;
 				}
+				else {
+					tree[parent][1] = child;
+				}
+				
+				tree[child][2] = parent;
 			}
 			
-			int result = bfs(sR, sC);
+			int root = find(find1, find2);
 			
-			System.out.println("#" + tc + " " + result);
+			System.out.println("#" + tc + " " + root + " " + size(root));
 		}
 	}
 	
-	static int bfs(int sR, int sC) {
-		Queue<Node> q = new ArrayDeque<>();
-		
-		q.add(new Node(sR, sC));
-		visited[sR][sC] = true;
-		
-		while(!q.isEmpty()) {
-			Node curr = q.poll();
-			int cr = curr.r;
-			int cc = curr.c;
-			
-			for(int d = 0; d < 4; d++) {
-				int nr = cr + dr[d];
-				int nc = cc + dc[d];
-				
-				if(nr < 0 || nr >= 16 || nc < 0 || nc >= 16) continue;
-				
-				if(map[nr][nc] == 0 && !visited[nr][nc]) {
-					visited[nr][nc] = true;
-					q.add(new Node(nr, nc));
-				}
-				
-				if(map[nr][nc] == 3) {
-					return 1;
-				}
-			}
+	static int find(int find1, int find2) {
+		visited = new boolean[V + 1];
+		while(find1 != 0) {
+			visited[find1] = true;
+			find1 = tree[find1][2];
 		}
+		
+		while(find2 != 0) {
+			if(visited[find2] == true) return find2;
+			find2 = tree[find2][2];
+		}
+		
 		return 0;
+	}
+	
+	static int size(int root) {
+		if(root == 0) return 0;
+		return 1 + size(tree[root][0]) + size(tree[root][1]);
 	}
 }
