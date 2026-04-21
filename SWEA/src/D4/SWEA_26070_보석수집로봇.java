@@ -11,7 +11,6 @@ public class SWEA_26070_보석수집로봇 {
 	static int[] dr = {0, 1, 0, -1};
 	static int[] dc = {1, 0, -1, 0};
 	static int min;
-	static boolean[][] visited;
 	static int lastDir;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

@@ -7,7 +7,6 @@ public class SWEA_26071_블록제거게임 {
 	static int N;
 	static int max;
 	static List<Integer> block;
-	static int total;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
