@@ -10,7 +10,6 @@ public class SWEA_2105_디저트카페 {
 	
 	static class Cafe {
 		int r, c;
-		int dir;
 		
 		public Cafe(int r, int c) {
 			this.r = r;
