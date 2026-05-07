@@ -1,3 +1,4 @@
+package Level10;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
@@ -6,8 +7,6 @@ public class 벽짚고미로탈출하기 {
 	static int[] dr = { 0, 1, 0, -1 }; // 우, 하, 좌, 상
 	static int[] dc = { 1, 0, -1, 0 };
 	static int dir;
-
-	static int count;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -23,7 +22,6 @@ public class 벽짚고미로탈출하기 {
 		}
 
 		dir = 0;
-		count = 0;
 		boolean[][][] visited = new boolean[n][n][4];
 		find(x, y, maze, visited, n);
 	}
