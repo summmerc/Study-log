@@ -1,3 +1,4 @@
+package Level11;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
@@ -6,8 +7,8 @@ public class 닷앤파운드 {
 	static int N;
 	static char[][] map;
 	static boolean[][] visited;
-	static int ResultCircum;
-	static int ResultCnt;
+	static int resultCircum;
+	static int resultCnt;
 	static double minDiv;
 	static int[] dr = {-1, 1, 0, 0};
 	static int[] dc = {0, 0, -1, 1};
@@ -26,8 +27,8 @@ public class 닷앤파운드 {
 		}
 		
 		visited = new boolean[N][N];
-		ResultCircum = 0;
-		ResultCnt = 0;
+		resultCircum = 0;
+		resultCnt = 0;
 		minDiv = Double.MAX_VALUE;
 		
 		for(int i = 0; i < N; i++) {
@@ -38,12 +39,12 @@ public class 닷앤파운드 {
 			}
 		}
 		
-		System.out.println(ResultCnt + " " + ResultCircum);
+		System.out.println(resultCnt + " " + resultCircum);
 	}
 	
 	static void bfs(int sR, int sC) {
 		Queue<int[]> q = new ArrayDeque<>();
-		q.add(new int[] {sR, sC}); //시작 r, 시작 c, 개수, 둘레
+		q.add(new int[] {sR, sC}); //시작 r, 시작 c
 		
 		int circum = 0;
 		int cnt = 0;
@@ -77,26 +78,16 @@ public class 닷앤파운드 {
 			
 		}
 		
-		double cDiv = (double)circum / cnt;
-		
-		if(cDiv < minDiv) {
-			ResultCircum = circum;
-			ResultCnt = cnt;
-			minDiv = cDiv;
+		if(resultCnt < cnt) {
+			resultCnt = cnt;
+			resultCircum = circum;
 		} 
-		else if(circum * ResultCnt == ResultCircum * cnt) {
-			if(circum < ResultCircum) {
-				ResultCircum = circum;
-				ResultCnt = cnt;
+		else if(resultCnt == cnt) {
+			if(circum < resultCircum) {
+				resultCircum = circum;
+				resultCnt = cnt;
 			}
 		}
-		
-		System.out.println("circum: " + circum);
-		System.out.println("cDiv : " + cDiv);
-		System.out.println("cnt : " + cnt);
-		System.out.println("ResultCnt :" + ResultCnt);
-		System.out.println("ResultCircum : " + ResultCircum);
-		System.out.println();
 	
 		
 	}
