@@ -1,27 +1,60 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
 	static int N;
-	static int[] dp;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		N = sc.nextInt();
-		dp = new int[1001];
 		
-		int cnt = 0;
-		for(int i = 0; i < N; i++) {
-			int from = sc.nextInt();
-			int to = sc.nextInt();
-			
-			if(dp[to] == 0) {
-				dp[to] = from;
-				cnt++;
-			} else {
-				dp[to] = Math.min(dp[to], from);
-			}
+		if(N == 1) {
+			System.out.println(0);
+			return;
 		}
 		
-		System.out.println(cnt);
+		Queue<Integer> q = new ArrayDeque<>();
+		boolean[] visited = new boolean[N + 3];
+		
+		q.add(N);
+		visited[N] = true;
+		
+		int cnt = 0;
+		
+		while(!q.isEmpty()) {
+			int size = q.size();
+			
+			for(int i = 0; i < size; i++) {
+				int curr = q.poll();
+				
+				if(curr == 1) {
+					System.out.println(cnt);
+					return;
+				}
+				
+				if(curr - 1 >= 1 && !visited[curr - 1]) {
+					q.add(curr - 1);
+					visited[curr - 1] = true;
+				}
+				
+				if(curr + 1 <= N + 2 && !visited[curr + 1]) {
+					q.add(curr + 1);
+					visited[curr + 1] = true;
+				}
+				
+				if(curr % 2 == 0 && !visited[curr / 2]) {
+					q.add(curr / 2);
+					visited[curr/2] = true;
+				}
+				
+				if(curr % 3 == 0 && !visited[curr / 3]) {
+					q.add(curr / 3);
+					visited[curr/3] = true;
+				}
+			}
+			
+			cnt++;
+		}
 	}
 }
