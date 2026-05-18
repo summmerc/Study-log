@@ -1,6 +1,7 @@
+package Level10;
 import java.util.Scanner;
 
-public class Main {
+public class 부분수열의합_dp {
 	static int N;
 	static int M;
 	static int[] A;

@@ -1,6 +1,7 @@
+package Level10;
 import java.util.Scanner;
 
-public class Main {
+public class 부분수열의합_dfs {
 	static int N;
 	static int M;
 	static int[] A;
@@ -16,23 +17,27 @@ public class Main {
 			A[i] = sc.nextInt();
 		}
 		
-		boolean dp[] = new boolean[M + 1];
+		dfs(0, 0);
 		
-		dp[0] = true;
-		for(int i = 0; i < N; i++) {
-			int num = A[i];
-			
-			for(int j = M; j >= num; j--) {
-				if(dp[j - num]) {
-					dp[j] = true;
-				}
-			}
-		}
-		
-		if(dp[M]) {
+		if(found) {
 			System.out.println("Yes");
 		} else {
 			System.out.println("No");
 		}
+	}
+	
+	static void dfs(int idx, int sum) {
+		if(found) return;
+		if(sum > M) return;
+		
+		if(sum == M) {
+			found = true;
+			return;
+		}
+		
+		if(idx == N) return;
+		
+		dfs(idx + 1, sum + A[idx]);
+		dfs(idx + 1, sum);
 	}
 }
