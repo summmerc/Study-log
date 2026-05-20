@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
 	static int N;
-	static int INF = Integer.MAX_VALUE;
+	static int INF = 9999999;
 	static int[][] grid;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -38,11 +38,11 @@ public class Main {
 					int up = INF;
 					int left = INF;
 					
-					if(i - 1 > 0 && dp[i - 1][j] != INF) {
+					if(i - 1 >= 0 && dp[i - 1][j] != INF) {
 						up = Math.max(grid[i][j], dp[i - 1][j]);
 					}
 					
-					if(j - 1 > 0 && dp[i][j - 1] != INF) {
+					if(j - 1 >= 0 && dp[i][j - 1] != INF) {
 						left = Math.max(grid[i][j], dp[i][j - 1]);
 					}
 					
