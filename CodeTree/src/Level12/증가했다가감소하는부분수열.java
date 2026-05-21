@@ -1,6 +1,7 @@
+package Level12;
 import java.util.Scanner;
 
-public class Main {
+public class 증가했다가감소하는부분수열 {
 	static int N;
 	static int[] arr;
 	static int[] increase;
