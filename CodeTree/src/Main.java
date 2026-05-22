@@ -1,48 +1,67 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
+
 
 public class Main {
 	static int N;
-	static int[] arr;
-	static int[] increase;
-	static int[] decrease;
+	static class Point implements Comparable<Point> {
+		int x, v, index;
+		
+		public Point(int x, int v, int index) {
+			this.x = x;
+			this.v = v;
+			this.index = index;
+		}
+		
+		@Override
+		public int compareTo(Point p) {
+			if(this.x != p.x) {
+				return Integer.compare(this.x, p.x);
+			}
+			return Integer.compare(p.v, this.v);
+		}
+	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-	
+		
 		N = sc.nextInt();
+		ArrayList<Point> points = new ArrayList<>();
 		
-		arr = new int[N];
 		for(int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
+			int x1 = sc.nextInt();
+			int x2 = sc.nextInt();
+			
+			points.add(new Point(x1, 1, i));
+			points.add(new Point(x2, -1, i));
 		}
 		
-		increase = new int[N];
-		decrease = new int[N];
+		Collections.sort(points);
 		
-		for(int i = 0; i < N; i++) {
-			increase[i] = 1;
-			for(int j = 0; j < i; j++) {
-				if(arr[j] < arr[i]) {
-					increase[i] = Math.max(increase[j] + 1, increase[i]);
+		long length = 0;
+		HashSet<Integer> set = new HashSet<>();
+		
+		for(int i = 0; i < 2 * N; i++) {
+			int x = points.get(i).x;
+			int v = points.get(i).v;
+			int idx = points.get(i).index;
+			
+			
+			if(v == 1) {
+				set.add(idx);
+			} else {
+				set.remove(idx);
+			}
+			
+			if(i < 2 * N - 1) {
+				int next = points.get(i + 1).x;
+				if(next > x && set.size() > 0) {
+					length += (next - x);					
 				}
 			}
 		}
 		
-		for(int i = N - 1; i >= 0; i--) {
-			decrease[i] = 1;
-			for(int j = N - 1; j > i; j--) {
-				if(arr[j] < arr[i]) {
-					decrease[i] = Math.max(decrease[j] + 1, decrease[i]);
-				}
-			}
-		}
-		
-		int max = 0;
-		for(int i = 0; i < N; i++) {
-			int total = increase[i] + decrease[i] - 1;
-			if(total < max) continue;
-			max = Math.max(total, max);
-		}
-		
-		System.out.println(max);
+		System.out.println(length);
 	}
 }
