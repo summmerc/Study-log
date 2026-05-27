@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class 점개수세기3 {
 	static int N, Q;
 	static int[] points;
-	static int[][] queries;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		

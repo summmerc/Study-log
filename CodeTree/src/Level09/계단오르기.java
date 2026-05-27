@@ -1,4 +1,4 @@
-package Level9;
+package Level09;
 import java.util.Scanner;
 
 public class 계단오르기 {
