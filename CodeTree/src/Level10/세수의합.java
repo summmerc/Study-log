@@ -1,7 +1,8 @@
+package Level10;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Main {
+public class 세수의합 {
 	static int N;
 	static long K;
 	public static void main(String[] args) {
