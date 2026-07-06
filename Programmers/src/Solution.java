@@ -1,56 +1,49 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 
 class Solution {
-	static boolean[] visited;
-	static int cnt;
-	static List<Integer>[] network;
+	static int[] parent;
+	static int min;
 	
-    public int solution(int n, int[][] computers) {
-    	network = new ArrayList[n];
+    public int solution(int n, int[][] wires) {
+    	min = Integer.MAX_VALUE;
     	
-    	for(int i = 0; i < n; i++) {
-    		network[i] = new ArrayList<>();
-    	}
-    	
-    	for(int i = 0; i < n; i++) {
-    		for(int j = 0; j < n; j++) {
+    	for(int i = 0; i < wires.length; i++) {
+    		parent = new int[n + 1];
+    		for(int j = 1; j <= n; j++) {
+    			parent[j] = j;
+    		}
+    		
+    		for(int j = 0; j < wires.length; j++) {
     			if(i == j) continue;
-    			if(computers[i][j] == 1) {
-    				network[i].add(j);
+    			union(wires[j][0], wires[j][1]);
+    		}
+    		
+    		int cnt = 0;
+    		int root = find(1);
+    		for(int j = 1; j <= n; j++) {
+    			if(find(j) == root) {
+    				cnt++;
     			}
     		}
+    		
+    		int left = n - cnt;
+    		min = Math.min(min, Math.abs(left - cnt));
     	}
     	
-    	cnt = 0;
-    	visited = new boolean[n];
-    	for(int i = 0; i < n; i++) {
-    		if(!visited[i]) {
-    			bfs(i, n);
-    		}
-    	}
-    	
-        return cnt;
+    	return min;
     }
     
-    static void bfs(int start, int n) {
-    	visited[start] = true;
-    	Queue<Integer> q = new ArrayDeque<>();
+    static void union(int x, int y) {
+    	int rX = find(x);
+    	int rY = find(y);
     	
-    	q.add(start);
-    	
-    	while(!q.isEmpty()) {
-    		int cur = q.poll();
-    		for(int i = 0; i < network[cur].size(); i++) {
-    			if(!visited[network[cur].get(i)]) {
-    				q.add(network[cur].get(i));
-    				visited[network[cur].get(i)] = true;
-    			}
-    		}
+    	if(rX != rY) {
+    		parent[rY] = rX;
     	}
-    	
-    	cnt++;
     }
+    
+    static int find(int x) {
+    	if(parent[x] == x) return x;
+    	return parent[x] = find(parent[x]);
+    }
+
 }
