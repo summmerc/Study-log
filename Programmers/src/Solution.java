@@ -1,49 +1,65 @@
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Stack;
 
 class Solution {
-	static int[] parent;
-	static int min;
-	
-    public int solution(int n, int[][] wires) {
-    	min = Integer.MAX_VALUE;
+	static PriorityQueue<String[]> pq;
+	static Stack<String[]> st;
+    public String[] solution(String[][] plans) {
+    	Arrays.sort(plans, (o1, o2) -> o1[1].compareTo(o2[1]));
     	
-    	for(int i = 0; i < wires.length; i++) {
-    		parent = new int[n + 1];
-    		for(int j = 1; j <= n; j++) {
-    			parent[j] = j;
-    		}
+    	st = new Stack<>();
+    	String[] answer = new String[plans.length];
+    	
+    	
+    	int now = 0; //시간
+    	int done = 0; //끝난거 answer넣을거
+    	int idx = 0; //지금 진행중인
+    	
+    	while(idx < plans.length - 1) {
+    		String[] curr = plans[idx];
     		
-    		for(int j = 0; j < wires.length; j++) {
-    			if(i == j) continue;
-    			union(wires[j][0], wires[j][1]);
-    		}
+    		String[] time = curr[1].split(":");
+    		int s = Integer.parseInt(time[0]) * 60 + Integer.parseInt(time[1]);
+    		int du = Integer.parseInt(curr[2]);
     		
-    		int cnt = 0;
-    		int root = find(1);
-    		for(int j = 1; j <= n; j++) {
-    			if(find(j) == root) {
-    				cnt++;
+    		String[] next = plans[idx + 1];
+    		String[] time2 = next[1].split(":");
+    		int s2 = Integer.parseInt(time2[0]) * 60 + Integer.parseInt(time2[1]);
+    		int du2 = Integer.parseInt(next[2]);
+    		
+    		now = s2 - s - du;
+    		if(s + du <= s2) { //만약에 ~ 시간이 남을 때
+    			answer[done++] = curr[0];
+//    			int diff = s2 - now;
+    			
+    			while(!st.isEmpty()) {
+    				String[] spop = st.pop();
+    				now -= Integer.parseInt(spop[2]);
+    				
+    				if(now < 0) {
+    					spop[2] = Math.abs(now) + "";
+    					st.add(spop);
+    					break;
+    				}
+    				
+    				answer[done++] = spop[0];
     			}
+    			
     		}
+    		else { 
+    			curr[2] = Math.abs(now) + "";
+    			st.add(curr);
+    		}
+    		idx++;
     		
-    		int left = n - cnt;
-    		min = Math.min(min, Math.abs(left - cnt));
     	}
     	
-    	return min;
-    }
-    
-    static void union(int x, int y) {
-    	int rX = find(x);
-    	int rY = find(y);
-    	
-    	if(rX != rY) {
-    		parent[rY] = rX;
+    	st.push(plans[idx]);
+    	while(!st.isEmpty()) {
+    		answer[done++] = st.pop()[0]; 
     	}
+        
+        return answer;
     }
-    
-    static int find(int x) {
-    	if(parent[x] == x) return x;
-    	return parent[x] = find(parent[x]);
-    }
-
 }
