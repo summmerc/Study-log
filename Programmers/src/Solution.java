@@ -1,50 +1,43 @@
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
-	static boolean[] visited;
-	static HashSet<String> set;
-	static int[] picked;
-
-	public int solution(String[] user_id, String[] banned_id) {
-		visited = new boolean[user_id.length];
-		set = new HashSet<>();
-		picked = new int[banned_id.length];
-
-		dfs(0, user_id, banned_id);
-
-		return set.size();
-	}
-
-	static void dfs(int idx, String[] user_id, String[] banned_id) {
+	static int[][] map;
+	static int result;
+	
+	
+    public int solution(int n) {
+    	map = new int[n][n];
+    	result = 0;
+        
+    	dfs(0, n, new ArrayList<>());
     	
-    	if(idx == banned_id.length) {
-    		int[] copy = picked.clone();
-    		Arrays.sort(copy);
-    		set.add(Arrays.toString(copy));
+        return result;
+    }
+    
+    private void dfs(int cnt, int N, List<int[]> list) {
+    	if(cnt == N) {
+    		result++;
     		return;
     	}
     	
-    	for(int i = 0; i < user_id.length; i++) {
-    		if(visited[i]) continue;
-    		if(isMatch(user_id[i], banned_id[idx])) {
-    			visited[i] = true;
-    			picked[idx] = i;
-    			
-    			dfs(idx + 1, user_id, banned_id);
-    			
-    			visited[i] = false;
+    	
+    	for(int i=0; i<N; i++) {
+    		boolean flag = false;
+    		for(int j = 0; j < cnt; j++) {
+        		// 기울기랑 , x 좌표 비교해서 같거나 1, -1 이면
+        		if(list.get(j)[1] == i || Math.abs((i - list.get(j)[1])) == Math.abs(cnt - list.get(j)[0])) {
+        			flag = true;
+        			break;
+        		}
+        	}
+    		if(flag) continue;
+    		else {
+    			list.add(new int[] {cnt, i});
+    			dfs(cnt + 1, N, list);
+    			list.remove(cnt);
     		}
+    		
     	}
     }
-
-	static boolean isMatch(String user, String banned) {
-		if(user.length() != banned.length()) return false;
-		for(int i = 0; i < banned.length(); i++) {
-			if(banned.charAt(i) == '*') continue;
-			if(user.charAt(i) != banned.charAt(i)) return false;
-		}
-		return true;
-	}
-
 }
