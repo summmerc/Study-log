@@ -1,4 +1,6 @@
-class Solution {
+package Level02;
+
+class 양궁대회 {
 	static int[] lion;
 	static int max;
 	static int[] result;
