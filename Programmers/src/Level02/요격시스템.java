@@ -1,6 +1,8 @@
+package Level02;
+
 import java.util.Arrays;
 
-class Solution {
+class 요격시스 {
 	static int cnt;
 	static boolean[] visited;
     public int solution(int[][] targets) {
