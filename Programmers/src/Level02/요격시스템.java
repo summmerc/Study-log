@@ -1,32 +1,8 @@
-<<<<<<< HEAD
-import java.util.HashSet;
-import java.util.Set;
+package Level02;
 
-class Solution {
-	static Set<Integer> result;
-    public int solution(int[] elements) {
-    	result = new HashSet<>();
-    	
-    	int[] big = new int[elements.length * 2];
-    	for(int i = 0; i < big.length; i++) {
-    		big[i] = elements[i % elements.length];
-    	}
-    	
-    	for(int i = 1; i <= elements.length; i++) { //배열길이
-    		for(int j = 0; j < elements.length; j++) { //시작점 위치
-    			int sum = 0;
-    			for(int k = 0; k < i; k++) {
-    				sum += big[j + k];
-    			}
-    			result.add(sum);
-    		}
-    	}
-    	
-        return result.size();
-=======
 import java.util.Arrays;
 
-class Solution {
+class 요격시스 {
 	static int cnt;
 	static boolean[] visited;
     public int solution(int[][] targets) {
@@ -55,7 +31,5 @@ class Solution {
     	}
     	
         return cnt;
->>>>>>> 67a9f5df3976ef6088edad6edbaa630a3c0e6fb3
     }
-    
 }
