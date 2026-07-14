@@ -1,7 +1,9 @@
+package Level02;
+
 import java.util.HashSet;
 import java.util.Set;
 
-class Solution {
+class 연속부분수열합의개수 {
 	static Set<Integer> result;
     public int solution(int[] elements) {
     	result = new HashSet<>();
