@@ -1,4 +1,6 @@
-class Solution {
+package Level02;
+
+class 연속된부분수열의합 {
 	static int[] result;
     public int[] solution(int[] sequence, int k) {
     	int len = 0;
