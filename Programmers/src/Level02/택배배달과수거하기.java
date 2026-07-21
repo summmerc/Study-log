@@ -1,4 +1,6 @@
-class Solution {
+package Level02;
+
+public class 택배배달과수거하기 {
 	static long total;
 	static int deliver;
 	static int pickup;
