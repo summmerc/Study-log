@@ -14,10 +14,18 @@ public class Solution {
 			}
 			
 			for(int i = 2; i < N - 2; i++) {
-				int highest = building[i];
+				int height = building[i];
+				int highest = building[i - 1];
+				highest = Math.max(highest, building[i - 2]);
+				highest = Math.max(highest, building[i + 1]);
+				highest = Math.max(highest, building[i + 2]);
 				
-				
+				if(height > highest) {
+					total += height - highest;
+				}
 			}
+			
+			System.out.println("#" + tc + " " + total);
 		}
 	}
 }
